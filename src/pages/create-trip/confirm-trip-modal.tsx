@@ -5,11 +5,15 @@ import {Button} from "../../components/button.tsx";
 interface ConfirmTripModalProps {
     closeConfirmTripModal: () => void
     createTrip: (event: FormEvent<HTMLFormElement>) => void
+    setOwnerName : (name: string) => void
+    setOnwerEmail : (email: string) => void
 }
 export function ConfirmTripModal(
     {
         createTrip,
-        closeConfirmTripModal
+        closeConfirmTripModal,
+        setOwnerName,
+        setOnwerEmail
     }:ConfirmTripModalProps) {
     return (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
@@ -33,13 +37,15 @@ export function ConfirmTripModal(
                     <div
                         className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
                         <User className="text-zinc-400 size-5"/>
-                        <input type="text" name="name" placeholder="Seu nome completo"
+                        <input onChange={event =>setOwnerName(event.target.value)}
+                            type="text" name="name" placeholder="Seu nome completo"
                                className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
                     </div>
                     <div
                         className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
                         <Mail className="text-zinc-400 size-5"/>
-                        <input type="email" name="email" placeholder="Seu e-mail pessoal"
+                        <input onChange={event =>setOnwerEmail(event.target.value)}
+                            type="email" name="email" placeholder="Seu e-mail pessoal"
                                className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"/>
                     </div>
                     <Button variant="primary" size="full" type="submit">
